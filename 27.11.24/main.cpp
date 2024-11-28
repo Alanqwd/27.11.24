@@ -4,6 +4,7 @@
 #include <mutex>
 #include <algorithm>
 #include <random>
+#include <string>
 
 
 class Printer {
@@ -20,7 +21,7 @@ private:
 
 void sortCollection(std::vector<int>& collection, Printer& printer) {
     std::sort(collection.begin(), collection.end());
-    printer.print("Сортировка: ""\n");
+    printer.print("Sort: ");
     for (int i : collection) {
         printer.print(std::to_string(i));
     }
@@ -41,10 +42,11 @@ int main() {
     std::uniform_int_distribution<int> dist(1, 100);
     for (int i = 0; i < 10; ++i) {
         collection1[i] = dist(mt);
+        
         collection2[i] = dist(mt);
+        
         collection3[i] = dist(mt);
     }
-
 
     std::thread t1([&printer, &collection1]() {
         sortCollection(collection1, printer);
